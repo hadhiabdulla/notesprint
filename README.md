@@ -8,6 +8,8 @@ The intended learner is a student with an unreliable connection and a shared or 
 
 ## Try it
 
+Working demo: https://hadhiabdulla.github.io/notesprint/
+
 Load the made-up networking example, make cards, and inspect the skipped line. Edit a question or answer. Start a round, attempt recall, reveal the note answer, and choose your own rating. Finish the round and revisit only the cards you marked for another look.
 
 Two supported formats, one card per nonblank line:
