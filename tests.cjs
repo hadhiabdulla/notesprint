@@ -32,3 +32,6 @@ test('app shell has no external scripts or fonts',()=>{const h=fs.readFileSync('
 test('no HTML injection sinks or note fetch in app',()=>{const s=fs.readFileSync('app.js','utf8');assert.ok(!/innerHTML|outerHTML|insertAdjacentHTML|fetch\(/.test(s));});
 test('storage opt-in and clear controls present',()=>{const h=fs.readFileSync('index.html','utf8');assert.ok(h.includes('id="confirmClear"'));assert.ok(!/id="remember"[^>]*checked/.test(h));});
 test('offline precache includes core code',()=>{const s=fs.readFileSync('sw.js','utf8');for(const f of ['index.html','style.css','engine.js','app.js'])assert.ok(s.includes(f));assert.ok(s.includes('CHECK_CACHE'));});
+
+test('export rejects UTF-8 decks too large to re-import',()=>assert.throws(()=>E.encode('Unicode',Array.from({length:80},(_,i)=>({question:String(i),answer:'字'.repeat(1500)}))),/250 KB/));
+test('decode uses UTF-8 bytes, not only JS length',()=>assert.throws(()=>E.decode('字'.repeat(84000)),/250 KB/));
